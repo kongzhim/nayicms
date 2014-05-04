@@ -1,0 +1,30 @@
+<include file='Public:header' />
+    <form action='{:U("add")}' method='post'>
+    <table class='table'>
+      <tr>
+        <th width="13%" align='right'>名称：</th>
+        <td width="87%"><input type='text' name='title' class='input'></td>
+      </tr>
+      <tr>
+        <th align='right'>URL:</th>
+        <td>
+            <input type='text' name='url' class='input'>
+        </td>
+      </tr>
+      <!--       <tr>
+        <th align='right'>缩略图：</th>
+        <td>
+	        <input id="url" type="text" name='thumb' class='input'>
+	        <input id="image" type="button" value="选择图片">
+        </td>
+      </tr> -->
+      <tr>
+        <th></th>
+        <td align='left'><input type='submit' class='sub-btn' value='提交'></td>
+      </tr>
+    </table>
+    </form>
+    <script type="text/javascript">
+        imageUp('image','url');
+    </script>
+<include file='Public:footer' />

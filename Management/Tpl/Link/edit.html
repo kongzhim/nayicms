@@ -1,0 +1,38 @@
+<include file='Public:header' />
+    <form action='{:U("edit")}' method='post'>
+    <input type="hidden" name='id' value='{$info.id}'>
+    <input type="hidden" name='yulan' value='{$info.thumb}'>
+    <table class='table'>
+      <tr>
+        <th width="13%" align='right'>名称：</th>
+        <td width="87%"><input type='text' name='title' class='input' value='{$info.title}'></td>
+      </tr>
+      <tr>
+        <th align='right'>URL:</th>
+        <td>
+            <input type='text' name='url' class='input' value='{$info.url}'>
+        </td>
+      </tr>
+      <!-- <if condition='$info["thumb"]'>
+      		<tr>
+			<td>预览：</td>
+			<td><img src="{$info.thumb}" width=300 height=100 /></td>
+		</tr>
+      </if>
+      <tr>
+        <th align='right'>缩略图：</th>
+        <td>
+	        <input id="url" type="text" name='thumb' class='input' value='{$info.thumb}'>
+	        <input id="image" type="button" value="选择图片">
+        </td>
+      </tr> -->
+      <tr>
+        <th></th>
+        <td align='left'><input type='submit' class='sub-btn' value='提交'></td>
+      </tr>
+    </table>
+    </form>
+    <script type="text/javascript">
+        imageUp('image','url');
+    </script>
+<include file='Public:footer' />

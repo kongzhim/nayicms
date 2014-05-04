@@ -1,0 +1,40 @@
+<include file='Public:header' />
+    <form action='{:U("addNodeHandle")}' method='post'>
+    <input type='hidden' value='{$level}' name='level'>
+    <input type='hidden' value='{$pid}' name='pid'>
+    <table class='table table-bordered'>
+        <th colspan='2'>添加{$name}</th>
+        <tr>
+            <td align='right' width='100'>{$name}名称</td>
+            <td>
+                <input type='text' name='name' class='input'/>
+            </td>
+        </tr>
+        <tr>
+            <td align='right'>{$name}描述</td>
+            <td>
+                <input type='text' name='title' class='input'/>
+            </td>
+        </tr>
+        <tr>
+            <td align='right'>是否开启</td>
+            <td>
+                <input type='radio' name='status' value='1' checked='checked'/>是
+                <input type='radio' name='status' value='0'>否
+            </td>
+        </tr>
+        <tr>
+            <td align='right'>排序</td>
+            <td>
+                <input type='text' name='sort' value='0' class='input'/>
+            </td>
+        </tr>
+        <tr>
+            <td align='right'></td>
+            <td>
+                <input type='submit' value='提交' class='btn btn-primary' />
+            </td>
+        </tr>
+    </table>
+    </form>
+<include file='Public:footer' />

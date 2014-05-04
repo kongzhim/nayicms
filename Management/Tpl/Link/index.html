@@ -1,0 +1,31 @@
+<include file='Public:header' />
+    <form action='{:U("listorder")}' method='post'>
+    <table class='table table-bordered'>
+        <tr>
+            <th width="3%" scope="col">排序</th>
+            <th width="4%" scope="col">id</th>
+            <th width="33%" scope="col">标题</th>
+            <th width="35%" scope="col">URL</th>
+            <th width="15%" scope="col">操作</th>
+        </tr>
+        <foreach name='list' item='v'>
+        <tr>
+            <td><input type="text" name='list[{$v.id}]' style='width:25px;text-align:center;' value='{$v.listorder}'></td>
+            <td>{$v.id}</td>
+            <td>{$v.title}</td>
+            <td>{$v.url}</td>
+            <td align='center'>
+                <a href='{:U("edit","id=".$v["id"])}' class='btn btn-primary'>编辑</a>
+                <a href='javascript:;' onclick="del('{:U('delete','id='.$v['id'])}')" class='btn btn-primary'>删除</a>
+            </td>
+        </tr>
+        </foreach>
+        <tr>
+            <td colspan='7' align='left'>
+                <input type="submit" class='btn-info' value='排序'>
+            </td>
+        </tr>
+        <tr><td colspan="7" class='page' align='right'>{$page}</td></tr>
+    </table>
+    </form>
+<include file='Public:footer' />

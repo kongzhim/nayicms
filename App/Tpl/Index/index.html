@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>222</title>
+</head>
+<body>
+<cms:category catid="0">
+    {$data.catname}<br>
+    <cms:category catid="$data['id']" return='v'>
+    ---{$v.catname}<br>
+    </cms:category>
+</cms:category>
+
+<cms:lists catid='2' num='2'>
+    {$list.title}<br>
+</cms:lists>
+
+<cms:page catid='2' num='2'/>
+
+<cms:banner num='25'>
+    <img src='{$banner.thumb}' width=200 height=100><br><br>
+</cms:banner>
+
+<cms:link num='25'>
+    {$link.title}<br><br>
+</cms:link>
+</body>
+</html>

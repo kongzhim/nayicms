@@ -1,0 +1,32 @@
+<include file='Public:header' />
+    <a href="{:U('index')}"><h3 class='btn btn-primary' style='width:55px;margin-bottom:10px;'>配置列表</h3></a>
+    <form action='{:U("edit")}' method='post'>
+    <input type='hidden' name='id' value='{$info.id}'>
+    <table class='table'>
+        <tr>
+            <td width="17%"><div align="right">配置标识</div></td>
+            <td width="83%"><input type='text' name='name' value='{$info.name}' class='input'>只允许英文字母。</td>
+        </tr>
+        <tr>
+            <td><div align="right">配置别名</div></td>
+            <td><input type='text' name='cname' value='{$info.cname}' class='input'></td>
+        </tr>
+        <tr>
+            <td><div align="right">配置值</div></td>
+            <td><textarea name='value' class='textarea'> {$info.value}</textarea></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type='submit' value='提交' class='ie-btn'></td>
+        </tr>
+    </table>
+    </form>
+    <script type="text/javascript">
+        editor(1,'value');
+        $('form').submit(function(){
+            if(false == emp('input','name','配置标识')){
+                return false;
+            }
+        });
+    </script>
+<include file='Public:footer' />

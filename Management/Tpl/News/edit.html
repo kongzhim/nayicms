@@ -1,0 +1,64 @@
+<include file='Public:header' />
+    <form action='{:U("edit")}' method='post'>
+    <input type='hidden' name='id' value='{$info.id}'>
+    <input type='hidden' name='yulan' value='{$info.thumb}'>
+    <table class='table'>
+      <tr>
+        <th width="13%" align='right'>标题：</th>
+        <td width="87%"><input type='text' name='title' class='input' value='{$info.title}'></td>
+      </tr>
+      <tr>
+        <th align='right'>所属栏目</th>
+        <td>
+            <select name='catid' class='select'>
+                <option value='0'>===请选择栏目===</option>
+                <foreach name="category" item="vo">
+                    <option value='{$vo.id}' {:selected($vo['id'],$info['catid'])}>
+                    <neq name="v['count']" value='0'>{:nbsp($vo['count'])}└─</neq>{$vo.catname}
+                    </option>
+                </foreach>
+            </select>
+        </td>
+      </tr>
+      <if condition='$info["thumb"]'>
+      <tr>
+        <th align='right'>预览：</th>
+        <td>
+              <img src='{$info.thumb}' width=300 height=100/>
+        </td>
+      </tr>
+      </if>
+      <tr>
+        <th align='right'>缩略图：</th>
+        <td>
+				        <input id="url" type="text" name='thumb' class='input' value='{$info.thumb}'>
+				        <input id="image" type="button" value="选择图片">
+        </td>
+      </tr>
+      <tr>
+        <th align='right'>SEO(标题)：</th>
+        <td><input type='text' name='seotitle' class='input' value='{$info.seotitle}'></td>
+      </tr>
+      <tr>
+        <th align='right'>SEO(关键字)：</th>
+        <td><input type='text' name='seokey' class='input' value="{$info.seokey}"></td>
+      </tr>
+      <tr>
+        <th align='right'>SEO(描述)：</th>
+        <td><textarea name='seodes' class='seotext'>{$info.seodes}</textarea></td>
+      </tr>
+      <tr>
+        <th align='right'>内容：</th>
+        <td><textarea name='content' style='width:100%;height:400px;'>{$info.content}</textarea></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td align='left'><input type='submit' class='sub-btn' value='提交'></td>
+      </tr>
+    </table>
+    </form>
+    <script type="text/javascript">
+        imageUp('image','url');
+        editor(1,'content');
+    </script>
+<include file='Public:footer' />

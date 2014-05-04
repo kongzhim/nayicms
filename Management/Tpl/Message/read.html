@@ -1,0 +1,44 @@
+<include file='Public:header' />
+
+    <table class='table table-bordered'>
+        <tr>
+            <th width="20%">时间</th>
+            <td width="80%">{$info.inputtime|myDate}</td>
+        </tr>
+        <tr>
+            <th width="20%">标题</th>
+            <td width="80%">{$info.title}</td>
+        </tr>
+        <tr>
+            <th>内容</th>
+            <td>{$info.content}</td>
+        </tr>
+        <tr>
+            <th colspan="2"></th>
+        </tr>
+        <tr>
+            <th>姓名</th>
+            <td>{$info.name}</td>
+        </tr>
+        <tr>
+            <th>邮箱</th>
+            <td>{$info.email}</td>
+        </tr>
+        <tr>
+            <th>电话</th>
+            <td>{$info.phone}</td>
+        </tr>
+    </table>
+
+<!-- 	<div style='margin-top:30px;'>
+		<form action="{:U('answer')}" method="post">
+		<input type="hidden" name='id' value='{$info.id}'>
+		<p style='margin-bottom:10px;'>
+			<textarea name="answer" class='textarea'></textarea>
+		</p>
+		<p>
+			<input type="submit" value="回复" class='btn btn-primary' />
+		</p>
+		</form>
+	</div> -->
+<include file='Public:footer' />

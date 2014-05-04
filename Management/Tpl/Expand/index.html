@@ -1,0 +1,19 @@
+<include file='Public:header' />
+    <a href="{:U('add')}"><h3 class='btn btn-primary' style='width:55px;margin-bottom:10px;'>添加配置</h3></a>
+    <table class='table'>
+      <tr>
+        <th width="7%">编号</th>
+        <th width="24%">配置标识</th>
+        <th width="51%">配置别名</th>
+        <th width="18%">操作</th>
+      </tr>
+        <foreach name='list' item='v'>
+          <tr>
+            <td>{$v.id}</td>
+            <td>{$v.name}</td>
+            <td>{$v.cname}</td>
+            <td align='center'><a href="{:U('edit','id='.$v['id'])}">更新内容</a>&nbsp;&nbsp;&nbsp;<a href="javascript:" onclick="del('{:U('delete','id='.$v['id'])}')">删除</a></td>
+          </tr>
+        </foreach>
+    </table>
+<include file='Public:footer' />

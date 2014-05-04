@@ -1,0 +1,34 @@
+<include file='Public:header' />
+    <form action='{:U("index")}' method='post'>
+    <input type='hidden' name='id' value='1' />
+    <table class='table'>
+      <tr>
+        <td width="16%" align='right'>网站名称：</td>
+        <td width="84%"><input type='text' name='title' class='input' value='{$info.title}'></td>
+      </tr>
+      <tr>
+        <td align='right'>关键词：</td>
+        <td><input type='text' name='key' class='input' value='{$info.key}'></td>
+      </tr>
+      <tr>
+        <td align='right'>描述：</td>
+        <td><input type='text' name='description' class='input' value='{$info.description}'></td>
+      </tr>
+      <tr>
+        <td align='right'>版权：</td>
+        <td><textarea name='copy' class='textarea'>{$info.copy}</textarea></td>
+      </tr>
+      <tr>
+        <td align='right'>验证码：</td>
+        <td><input type='radio' name='verify' value='1' {:checked(1,$info['verify'])}>显示<input type='radio' name='verify' value='0' {:checked(0,$info['verify'])}>不显示</td>
+      </tr>
+      <tr>
+        <td align='right'></td>
+        <td><input type='submit' value='提交' class='btn btn-primary'/></td>
+      </tr>
+    </table>
+    </form>
+    <script type="text/javascript">
+        editor('1','copy');
+    </script>
+<include file='Public:footer' />

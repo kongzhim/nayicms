@@ -1,0 +1,6 @@
+TRUNCATE TABLE `tp_message`;
+TRUNCATE TABLE `tp_news`;
+TRUNCATE TABLE `tp_news_data`;
+TRUNCATE TABLE `tp_category`;
+TRUNCATE TABLE `tp_page`;
+TRUNCATE TABLE `tp_link`;

@@ -1,0 +1,71 @@
+<include file='Public:header' />
+    <form action='{:U("edit")}' method='post'>
+    <input type='hidden' name='id' value='{$info.id}'>
+    <input type='hidden' name='yulan' value='{$info.thumb}'>
+    <table class='table'>
+      <tr>
+        <th width="13%" align='right'>栏目名称：</th>
+        <td width="87%"><input type='text' name='catname' class='input' value="{$info.catname}"></td>
+      </tr>
+      <tr>
+        <th align='right'>父栏目：</th>
+        <td>
+            <select name='pid' class='select'>
+                <option value='0'>===顶级栏目===</option>
+                <volist name="list" id="vo">
+                    <option value='{$vo.id}' {:selected($vo['id'],$info['pid'])}>
+                    <neq name="v['count']" value='0'>{:nbsp($vo['count'])}└─</neq>{$vo.catname}
+                    </option>
+                </volist>
+            </select>
+        </td>
+      </tr>
+      <if condition='$info["thumb"]'>
+        <tr>
+            <td>预览：</td>
+            <td><img src='{$info.thumb}' width=300 height=100 /></td>
+        </tr>
+      </if>
+      <tr>
+        <th align='right'>缩略图：</th>
+        <td>
+				        <input id="url" type="text" name='thumb' class='input' value='{$info.thumb}'>
+				        <input id="image" type="button" value="选择图片">
+        </td>
+      </tr>
+      <tr>
+        <th align='right'>导航：</th>
+        <td>
+            <input type='radio' name='ismenu' value='1' {$info.ismenu|checked=1}>是
+            <input type='radio' name='ismenu' value='0' {$info.ismenu|checked=0}>否
+        </td>
+      </tr>
+      <tr>
+        <th align='right'>单页：</th>
+        <td>
+            <input type='radio' name='ispage' value='1' {$info.ispage|checked=1}>是
+            <input type='radio' name='ispage' value='0' {$info.ispage|checked=0}>否
+        </td>
+      </tr>
+      <tr>
+        <th align='right'>SEO(标题)：</th>
+        <td><input type='text' name='seotitle' class='input' value='{$info.seotitle}'></td>
+      </tr>
+      <tr>
+        <th align='right'>SEO(关键字)：</th>
+        <td><input type='text' name='seokey' class='input' value='{$info.seokey}'></td>
+      </tr>
+      <tr>
+        <th align='right'>SEO(描述)：</th>
+        <td><textarea name='seodes' class='seotext'>{$info.seodes}</textarea></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td align='left'><input type='submit' class='sub-btn' value='提交'></td>
+      </tr>
+    </table>
+    </form>
+    <script type="text/javascript">
+        imageUp('image','url');
+    </script>
+<include file='Public:footer' />

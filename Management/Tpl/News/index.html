@@ -1,0 +1,121 @@
+<include file='Public:header' />
+    <div class='catlist'>
+        <select name="catid" onchange="catnew('{:U('index','','')}')" class="select">
+                <option value="0">按栏目查询文章</option>
+            <foreach name="category" item="vo">
+                <option value='{$vo.id}' {:selected($vo['id'],$catid)}>
+                <neq name="v['count']" value='0'>{:nbsp($vo['count'])}└─</neq>{$vo.catname}
+                </option>
+            </foreach>
+        </select>
+    </div>
+    <form action='{:U("order")}' method='post'>
+    <table class='table table-bordered'>
+        <tr>
+            <th width="3%" scope="col"><input type='checkbox' class='allchecked' /></th>
+            <th width="3%" scope="col">排序</th>
+            <th width="4%" scope="col">id</th>
+            <th width="40%" scope="col">标题</th>
+            <th width="20%" scope="col">栏目</th>
+            <th width="15%" scope="col">录入时间</th>
+            <th width="15%" scope="col">操作</th>
+        </tr>
+        <foreach name='list' item='v'>
+        <tr>
+            <td><input type="checkbox" name='ids[]' value='{$v.id}'></td>
+            <td><input type="text" name='list[{$v.id}]' style='width:25px;text-align:center;' value='{$v.listorder}'></td>
+            <td>{$v.id}</td>
+            <td>{$v.title}<if condition="$v.thumb"><font style="color:red;font-size:12px;margin-left:10px;">[图]</font></if></td>
+            <td>{$v.catid|getCatname}</td>
+            <td>{$v.inputtime|myDate}</td>
+            <td align='center'>
+                <a href='{:U("edit","id=".$v["id"])}' class='btn btn-primary'>编辑</a>
+                <a href='javascript:;' onclick="del('{:U('delete','id='.$v['id'])}')" class='btn btn-primary'>删除</a>
+            </td>
+        </tr>
+        </foreach>
+        <tr>
+            <td colspan='7' align='left'>
+                <span class='btn-info checked'>反选</span>
+                <input type="submit" class='btn-info' value='排序'>
+                <input type="button" class='btn-info' onclick="alldel('{:U('alldel','','')}')" value='删除'>
+            </td>
+        </tr>
+        <tr><td colspan="7" class='page' align='right'>{$page}</td></tr>
+    </table>
+    </form>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.checked').click(function(){
+               $('input[name="ids[]"]').each(function(){
+                    if($(this).attr('checked')){
+                        $(this).attr('checked',false);
+                        $('.allchecked').attr('checked',false);
+                    }else{
+                        $(this).attr('checked',true);
+                    }
+               }) 
+            });
+            $('.allchecked').click(function(){
+                if($(this).attr('checked')){
+                    $('input[name="ids[]"]').each(function(){
+                        $(this).attr('checked',true);
+                    })
+                }else{
+                    $('input[name="ids[]"]').each(function(){
+                        $(this).attr('checked',false);
+                    })
+                }
+
+            });
+            $('input[name="ids[]"]').click(function(){
+                if($(this).attr('checked')){
+                    return true;
+                }else{
+                    $('.allchecked').attr('checked',false);
+                }
+            });
+        });
+        function alldel(ur){
+            var url = ur;
+            var ids = new Array();
+            var n = 0;
+            $('input[name="ids[]"]').each(function(){
+                if($(this).attr('checked')){
+                    ids[n] = $(this).val();
+                    n++;
+                }
+            });
+            if(ids==''){
+                alert('请选择文章');
+            } else {    
+                if(confirm('确定删除所选？')){
+                    $.ajax({
+                        type: 'post',
+                        url: ur,
+                        data: "ids="+ids,
+                        success: function(msg){
+                            if(msg=='成功'){
+                                alert('成功');
+                                window.location.reload();
+                            } else {
+                                alert('失败');
+                            }
+                        }
+                    });       
+                }
+            }
+        }
+        function catnew(ur){
+            var url = ur;
+            url = url + '/catid/';
+            var v = $('select[name="catid"]').val();
+            if(v==0){
+                return false;
+            } else {
+                var uu = url + v + '.html';
+                window.location.href = uu;
+            }
+        }
+    </script>
+<include file='Public:footer' />

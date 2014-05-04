@@ -1,0 +1,64 @@
+<include file='Public:header' />
+    <form action='{:U("add")}' method='post'>
+    <table class='table'>
+      <tr>
+        <th width="13%" align='right'>栏目名称：</th>
+        <td width="87%"><input type='text' name='catname' class='input'></td>
+      </tr>
+      <tr>
+        <th align='right'>父栏目：</th>
+        <td>
+            <select name='pid' class='select'>
+                <option value='0'>===顶级栏目===</option>
+                <volist name="list" id="vo">
+                    <option value='{$vo.id}' {:selected($vo['id'],$info['pid'])}>
+                          {:nbsp($vo['count'])}└─{$vo.catname}
+                    </option>
+                </volist>
+            </select>
+        </td>
+      </tr>
+      <tr>
+        <th align='right'>缩略图：</th>
+        <td>
+				        <input id="url" type="text" name='thumb' class='input'>
+				        <input id="image" type="button" value="选择图片">
+        </td>
+      </tr>
+      <tr>
+        <th align='right'>模板名称：</th>
+        <td>
+				        <input type="text" name='dir' class='input'>
+            <font style='color:red;margin-left:10px;'>视需要添加，不需要勿填！</font>
+        </td>
+      </tr>
+      <tr>
+        <th align='right'>导航：</th>
+        <td><input type='radio' name='ismenu' value='1'>是<input type='radio' name='ismenu' value='0'>否</td>
+      </tr>
+      <tr>
+        <th align='right'>单页：</th>
+        <td><input type='radio' name='ispage' value='1'>是<input type='radio' name='ispage' value='0'>否</td>
+      </tr>
+      <tr>
+        <th align='right'>SEO(标题)：</th>
+        <td><input type='text' name='seotitle' class='input'></td>
+      </tr>
+      <tr>
+        <th align='right'>SEO(关键字)：</th>
+        <td><input type='text' name='seokey' class='input'></td>
+      </tr>
+      <tr>
+        <th align='right'>SEO(描述)：</th>
+        <td><textarea name='seodes' class='seotext'></textarea></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td align='left'><input type='submit' class='sub-btn' value='提交'></td>
+      </tr>
+    </table>
+    </form>
+    <script type="text/javascript">
+        imageUp('image','url');
+    </script>
+<include file='Public:footer' />

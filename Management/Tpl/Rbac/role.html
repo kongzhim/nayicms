@@ -1,0 +1,25 @@
+<include file='Public:header' />
+    <form action='{:U("addRoleHandle")}' method='post'>
+    <table class='table table-bordered'>
+        <th colspan='5'>角色列表</th>
+        <tr>
+            <th width='100'>角色id</th>
+            <th>角色名称</th>
+            <th>角色描述</th>
+            <th width=100>开启状态</th>
+            <th width=200>操作</th>
+        </tr>
+        <foreach name='list' item='v'>
+        <tr>
+            <td align='center'><input type='checkbox' name='ids[]' value='{$v.id}'/></td>
+            <td>{$v.name}</td>
+            <td>{$v.remark}</td>
+            <td align='center'><if condition='$v["status"]'>开启<else />关闭</if></td>
+            <td align='center'>
+                [配置权限]&nbsp;[更改]&nbsp;[删除]
+            </td>
+        </tr>
+        </foreach>
+    </table>
+    </form>
+<include file='Public:footer' />

@@ -1,0 +1,25 @@
+<include file='Public:header' />
+    <form action='{:U("addRoleHandle")}' method='post'>
+    <table class='table table-bordered'>
+        <th colspan='5'>节点列表</th>
+        <tr>
+            <th width='100'>节点id</th>
+            <th>节点名称</th>
+            <th>节点描述</th>
+            <th width=100>开启状态</th>
+            <th width=200>操作</th>
+        </tr>
+        <foreach name='list' item='v'>
+        <tr>
+            <td align='center'><input type='checkbox' name='ids[]' value='{$v.id}'/></td>
+            <td>{$v.name}</td>
+            <td>{$v.title}</td>
+            <td align='center'><if condition='$v["status"]'>开启<else />关闭</if></td>
+            <td align='center'>
+                <a href="{:U('addNode',array(pid=>$v['id'],level=>'2'))}">添加节点</a>&nbsp;|&nbsp;更改&nbsp;|&nbsp;删除
+            </td>
+        </tr>
+        </foreach>
+    </table>
+    </form>
+<include file='Public:footer' />
