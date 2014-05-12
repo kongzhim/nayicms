@@ -56,4 +56,17 @@ class MessageAction extends CommonAction{
 		}
 		M($this->table)->where('id='.$id)->setField('answer',$_POST['answer']) ? $this->success('成功',U('index')) : $this->error('错误');
 	}
+
+    public function isshow(){
+        if(!IS_AJAX){
+            return false;
+        } else {
+            $is = $_POST['isshow'];
+            $id = intval($_POST['id']);
+            if($id<=0){
+                return false;
+            }
+            M($this->table)->where('id='.$id)->setField('isshow',$is) ? $this->ajaxReturn('1') : $this->ajaxReturn('0');
+        }
+    }
 }

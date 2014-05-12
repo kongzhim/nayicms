@@ -40,7 +40,7 @@ class LinkAction extends CommonAction{
 		}
 	}
 
-	public function delele(){
+	public function delete(){
 		$id = I('id',0,'intval');
 		if($id<=0){
 			$this->error('Id is wrong');

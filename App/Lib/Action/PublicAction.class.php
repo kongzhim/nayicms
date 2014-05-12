@@ -3,6 +3,7 @@
 //后台公共类
 
 class PublicAction extends Action{
+    public $title = '';
 	public function _initialize(){
         $this->config();
     }
@@ -17,6 +18,7 @@ class PublicAction extends Action{
     	foreach($expand as $v){
     		C($v['name'],$v['value']);
     	}
+        
     }
 }
 ?>

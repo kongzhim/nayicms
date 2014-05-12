@@ -17,6 +17,7 @@ a:focus{ -moz-outline-style: none; /* FF */
 }
 a:link,a:visited{ text-decoration:none;}
 a:hover{color:#f6701b;}
+.one{color:#46a3ff;}
 .mukuaia{ font-size:14px; height:52px;}
 .mukuaia ul li{ float:left;background:url(../images/xian.jpg) no-repeat right; width:101px; text-align:center;}
 .mukuaia ul li.no{ background:none;}

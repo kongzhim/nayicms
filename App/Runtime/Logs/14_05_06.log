@@ -1,0 +1,45 @@
+[ 2014-05-06T09:37:46+08:00 ] 127.0.0.1 /
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.015625s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015625s ]
+SQL: SHOW COLUMNS FROM `tp_config` [ RunTime:0.062500s ]
+SQL: SELECT * FROM `tp_config` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `tp_expand` [ RunTime:0.046875s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\kongzhim\wwwroot\cms.com\Core\Lib\Core\Db.class.php 第 424 行.
+SQL: SELECT * FROM `tp_expand`  [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined index: num F:\kongzhim\wwwroot\cms.com\App\Lib\TagLib\TagLibCms.class.php 第 15 行.
+NOTIC: [8] Undefined index: order F:\kongzhim\wwwroot\cms.com\App\Lib\TagLib\TagLibCms.class.php 第 17 行.
+NOTIC: [8] Undefined index: return F:\kongzhim\wwwroot\cms.com\App\Lib\TagLib\TagLibCms.class.php 第 18 行.
+NOTIC: [8] Undefined index: num F:\kongzhim\wwwroot\cms.com\App\Lib\TagLib\TagLibCms.class.php 第 15 行.
+NOTIC: [8] Undefined index: order F:\kongzhim\wwwroot\cms.com\App\Lib\TagLib\TagLibCms.class.php 第 17 行.
+NOTIC: [8] Undefined index: order F:\kongzhim\wwwroot\cms.com\App\Lib\TagLib\TagLibCms.class.php 第 33 行.
+NOTIC: [8] Undefined index: return F:\kongzhim\wwwroot\cms.com\App\Lib\TagLib\TagLibCms.class.php 第 34 行.
+NOTIC: [8] Undefined index: moreinfo F:\kongzhim\wwwroot\cms.com\App\Lib\TagLib\TagLibCms.class.php 第 35 行.
+NOTIC: [8] Undefined index: return F:\kongzhim\wwwroot\cms.com\App\Lib\TagLib\TagLibCms.class.php 第 68 行.
+NOTIC: [8] Undefined index: return F:\kongzhim\wwwroot\cms.com\App\Lib\TagLib\TagLibCms.class.php 第 80 行.
+SQL: SHOW COLUMNS FROM `tp_category` [ RunTime:0.031250s ]
+SQL: SELECT `id`,`catname`,`ismenu` FROM `tp_category` WHERE ( `ismenu` = 1 ) AND ( `pid` = 0 ) ORDER BY listorder DESC LIMIT 0,25   [ RunTime:0.031250s ]
+SQL: SELECT `id`,`catname`,`ismenu` FROM `tp_category` WHERE ( `ismenu` = 1 ) AND ( `pid` = 1 ) ORDER BY listorder DESC LIMIT 0,25   [ RunTime:0.000000s ]
+SQL: SELECT `id`,`catname`,`ismenu` FROM `tp_category` WHERE ( `ismenu` = 1 ) AND ( `pid` = 3 ) ORDER BY listorder DESC LIMIT 0,25   [ RunTime:0.000000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\kongzhim\wwwroot\cms.com\App\Runtime\Cache\f331a3f0d874c4248458495ef2c2c2d1.php 第 9 行.
+SQL: SELECT `id`,`catname`,`ismenu` FROM `tp_category` WHERE ( `ismenu` = 1 ) AND ( `pid` = 4 ) ORDER BY listorder DESC LIMIT 0,25   [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `tp_news` [ RunTime:0.015625s ]
+SQL: SELECT `id`,`catid`,`thumb`,`title`,`inputtime` FROM `tp_news` WHERE ( catid=2 ) ORDER BY listorder DESC,inputtime DESC LIMIT 0,2   [ RunTime:0.015625s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tp_news` WHERE ( catid=2 ) LIMIT 1   [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `tp_banner` [ RunTime:0.031250s ]
+SQL: SELECT * FROM `tp_banner` ORDER BY listorder DESC,id DESC LIMIT 25   [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `tp_link` [ RunTime:0.015625s ]
+SQL: SELECT * FROM `tp_link` ORDER BY listorder DESC,id DESC LIMIT 25   [ RunTime:0.000000s ]
+INFO: ParseTemplate Behavior ::run [ RunTime:0.281250s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.281250s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.015625s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.015625s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000000s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.031250s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.015625s ]
+INFO: [ view_end ] --END-- [ RunTime:0.015625s ]
+

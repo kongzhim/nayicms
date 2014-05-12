@@ -10,7 +10,7 @@ function categorys($catid,$field='catname'){
     return M('Category')->where('id='.$catid)->getField($field);
 }
 //url格式化
-function caturl($catid,$ispage=0){
+function caturl($catid,$ispage='0'){
     if($ispage){
         return U('page/'.$catid,'','');
     } else {
@@ -41,6 +41,35 @@ function selected($n,$m){
         return 'selected="selected"';
     }
 }
+//当前位置
+function catpos($catid,$tag=' > '){
+    $parent = M('Category')->where('id='.$catid)->getField('arrparent');
+    $arr = explode(',',$parent);
+    if(count($arr)==1 && $arr[0] == 0){
+        $ispage = M('Category')->where('id='.$catid)->getField('ispage');
+        return $tag . '<a href="'.caturl($catid,$ispage).'">'.categorys($catid,'catname').'</a>';
+    }
+    $arrs = pids($catid);
+    array_pop($arrs);
+    $newarr = array_reverse($arrs);
+    $str = '';
+    for($i=0;$i<count($newarr);$i++){
+        $ispage = categorys($newarr[$i],'ispage');
+        $str .= $tag . '<a href='.caturl($newarr[$i],$ispage).'>'.categorys($newarr[$i],'catname').'</a>';
+    }
+    $str .= $tag . categorys($catid,'catname');
+    return $str;
+}
+//递归找父栏目id
+function pids($id){
+    static $arr = array();
+    $pid = M('Category')->where('id='.$id)->getField('pid');
+    $arr[] = $pid;
+    if($pid){
+        pids($pid);
+    }
+    return $arr;
+}
 /**
  * 字符串截取，支持中文和其他编码
  * @static
@@ -68,7 +97,7 @@ function msubstr($str, $length, $start=0, $charset="utf-8", $suffix=true) {
         preg_match_all($re[$charset], $str, $match);
         $slice = join("",array_slice($match[0], $start, $length));
     }
-    return $suffix ? $slice.'...' : $slice;
+    return $suffix ? $slice : $slice;
 }
 
 //递归栏目

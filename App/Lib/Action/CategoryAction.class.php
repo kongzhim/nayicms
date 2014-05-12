@@ -2,18 +2,20 @@
 class CategoryAction extends PublicAction{
     protected $table = 'Category';
     public function category(){
-        $catid = $_GET['id'] ? I('id',0,'intval') : 0;
+        $catid = I('id',0,'intval');
         if($catid != 0){
-            $cate = M($this->table)->find($catid);
+            $cate = M($this->table)->where('id='.$catid)->find();
             if(!$cate) $this->redirect('/');        
         } else {
-            $cate = M($this->table)->find($catid);
+            $cate = M($this->table)->where('id='.$catid)->find();
         }
         $this->assign('catid',$catid);
+        $this->assign('pid',$cate['pid']);
+        $this->assign('child',M('Category')->where('id='.$cate['pid'])->getField('child'));
         
+        $this->seo($cate);
         if($cate['child']){
             //标题，关键字赋值
-            $this->seo($cate);
 
             if(!empty($cate['dir'])){
                 $this->display('category_'.$cate['dir']);

@@ -11,7 +11,10 @@
         <tr>
 					       <td align='center'><input type="text" name='list[{$v.id}]' style='width:30px;text-align:center;' value='{$v.listorder}'></td>
             <td align='center'>{$v.id}</td>
-            <td><neq name="v['count']" value='0'>{$v['count']|nbsp}├─</neq>{$v.catname}</td>
+            <td><neq name="v['count']" value='0'>{$v['count']|nbsp}├─</neq>{$v.catname}
+                  <eq name="v['ismenu']" value='0'>
+                   <img src='../Public/images/x.png' title='不在导航显示'>
+                  </eq></td>
             <td align='center'>
                 <a href="{:U('Page/edit','id='.$v['id'])}" class='a-btn'>编辑</a> &nbsp;&nbsp;&nbsp;
                 <a href="{:U('edit','id='.$v['id'])}" class='a-btn'>修改</a> &nbsp;&nbsp;&nbsp;

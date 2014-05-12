@@ -1,15 +1,28 @@
-<include file='Public:header' />
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>网站管理后台</title>
+<link href="../Public/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src='../Public/js/jquery.min.js'></script>
+<link rel="stylesheet" href="__STATIC__/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="__STATIC__/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="__STATIC__/kindeditor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="../Public/js/cms.js"></script>
+</head>
+
+<body>
+<div class="serv_right" style='padding:20px;'>
+    <div class="tableaa">
     <div class='catlist'>
-        <select name="catid" onchange="catnew('{:U('index','','')}')" class="select">
+        <select name="catid" onchange="catnew('<?php echo U('index','','');?>')" class="select">
                 <option value="0">按栏目查询文章</option>
-            <foreach name="category" item="vo">
-                <option value='{$vo.id}' {:selected($vo['id'],$catid)}>
-                <neq name="v['count']" value='0'>{:nbsp($vo['count'])}└─</neq>{$vo.catname}
-                </option>
-            </foreach>
+            <?php if(is_array($category)): foreach($category as $key=>$vo): ?><option value='<?php echo ($vo["id"]); ?>' <?php echo selected($vo['id'],$catid);?>>
+                <?php if(($v['count']) != "0"): echo nbsp($vo['count']);?>└─<?php endif; echo ($vo["catname"]); ?>
+                </option><?php endforeach; endif; ?>
         </select>
     </div>
-    <form action='{:U("order")}' method='post'>
+    <form action='<?php echo U("order");?>' method='post'>
     <table class='table table-bordered'>
         <tr>
             <th width="3%" scope="col"><input type='checkbox' class='allchecked' /></th>
@@ -20,28 +33,26 @@
             <th width="15%" scope="col">录入时间</th>
             <th width="15%" scope="col">操作</th>
         </tr>
-        <foreach name='list' item='v'>
-        <tr>
-            <td><input type="checkbox" name='ids[]' value='{$v.id}'></td>
-            <td><input type="text" name='list[{$v.id}]' style='width:25px;text-align:center;' value='{$v.listorder}'></td>
-            <td>{$v.id}</td>
-            <td>{$v.title}<if condition="$v.thumb"><font style="color:red;font-size:12px;margin-left:10px;">[图]</font></if></td>
-            <td>{$v.catid|getCatname}</td>
-            <td>{$v.inputtime|myDate}</td>
+        <?php if(is_array($list)): foreach($list as $key=>$v): ?><tr>
+            <td><input type="checkbox" name='ids[]' value='<?php echo ($v["id"]); ?>'></td>
+            <td><input type="text" name='list[<?php echo ($v["id"]); ?>]' style='width:25px;text-align:center;' value='<?php echo ($v["listorder"]); ?>'></td>
+            <td><?php echo ($v["id"]); ?></td>
+            <td><?php echo ($v["title"]); if($v.thumb): ?><font style="color:red;font-size:12px;margin-left:10px;">[图]</font><?php endif; ?></td>
+            <td><?php echo (getcatname($v["catid"])); ?></td>
+            <td><?php echo (mydate($v["inputtime"])); ?></td>
             <td align='center'>
-                <a href='{:U("edit","id=".$v["id"])}' class='a-btn'>编辑</a>
-                <a href='javascript:;' onclick="del('{:U('delete','id='.$v['id'])}')" class='a-btn'>删除</a>
+                <a href='<?php echo U("edit","id=".$v["id"]);?>' class='a-btn'>编辑</a>
+                <a href='javascript:;' onclick="del('<?php echo U('delete','id='.$v['id']);?>')" class='a-btn'>删除</a>
             </td>
-        </tr>
-        </foreach>
+        </tr><?php endforeach; endif; ?>
         <tr>
             <td colspan='7' align='left'>
                 <span class='btn-info checked'>反选</span>
                 <input type="submit" class='btn-info' value='排序'>
-                <input type="button" class='btn-info' onclick="alldel('{:U('alldel','','')}')" value='删除'>
+                <input type="button" class='btn-info' onclick="alldel('<?php echo U('alldel','','');?>')" value='删除'>
             </td>
         </tr>
-        <tr><td colspan="7" class='page' align='right'>{$page}</td></tr>
+        <tr><td colspan="7" class='page' align='right'><?php echo ($page); ?></td></tr>
     </table>
     </form>
     <script type="text/javascript">
@@ -118,4 +129,7 @@
             }
         }
     </script>
-<include file='Public:footer' />
+    </div>
+</div>
+</body>
+</html>

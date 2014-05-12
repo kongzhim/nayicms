@@ -92,5 +92,7 @@ function getCatname($id){
     if(!intval($id)) return false;
     return M('Category')->where('id='.$id)->getField('catname');
 }
-
+function checkCatid($id){
+    if($id<=0) return false;
+}
 ?>

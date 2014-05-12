@@ -82,7 +82,12 @@ class CategoryAction extends CommonAction{
         $thumb = M($this->table)->where('id='.$id)->getfield('thumb');
         $this->removeFile($thumb);
         M('Page')->where('catid='.$id)->delete();
-        M($this->table)->where('id='.$id)->delete() ? $this->success('删除成功') : $this->error('删除失败');
+        if(M($this->table)->where('id='.$id)->delete()){
+            $this->updateId();
+            $this->success('删除成功',U('index'));
+        } else {
+            $this->error('删除失败');
+        }
 
     }
 

@@ -1,5 +1,5 @@
 <?php
-class NewsAction extends PublicAction{
+class GoodsAction extends PublicAction{
     protected $table = 'News';
     public function index(){
         $id = I('id',0,'intval');
@@ -9,14 +9,16 @@ class NewsAction extends PublicAction{
         $this->seo($res);
         //栏目信息
         $cate = M('category')->where('id='.$res['catid'])->find();
+        $this->assign('pid',$cate['pid']);
+        $this->assign('child',M('Category')->where('id='.$cate['pid'])->getField('child'));
         $this->assign('catid',$res['catid']);
         //详细内容
         $this->assign('info',$res);
 
         if($cate['dir']){
-            $this->display('Category:show_'.$cate['dir']);
+            $this->display('Category:goods_'.$cate['dir']);
         }else{
-            $this->display('Category:show');
+            $this->display('Category:goods');
         }
 
     }

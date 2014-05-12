@@ -1,5 +1,20 @@
-<include file='Public:header' />
-    <form action='{:U("listorder")}' method='post'>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>网站管理后台</title>
+<link href="../Public/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src='../Public/js/jquery.min.js'></script>
+<link rel="stylesheet" href="__STATIC__/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="__STATIC__/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="__STATIC__/kindeditor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="../Public/js/cms.js"></script>
+</head>
+
+<body>
+<div class="serv_right" style='padding:20px;'>
+    <div class="tableaa">
+    <form action='<?php echo U("listorder");?>' method='post'>
     <table class='table table-bordered'>
         <tr>
             <th width="4%" scope="col"><input type='checkbox' class='allchecked' /></th>
@@ -11,28 +26,26 @@
             <th width="5%" scope="col">状态</th>
             <th width="12%" scope="col">操作</th>
         </tr>
-        <foreach name='list' item='v'>
-        <tr>
-            <td><input type="checkbox" name='ids[]' value='{$v.id}'></td>
-            <td>{$v.id}</td>
-            <td>{$v.title}<if condition="$v['status'] eq 0"><font style='color:red;font-size:12px;margin-left:10px;'>新</font></if></td>
-            <td>{$v.name}</td>
-            <td>{$v.phone}</td>
-            <td align='center'>{$v.inputtime|myDate='Y-m-d H:i'}</td>
-            <td align='center'><span class="show" style='color:red;cursor:pointer;'><if condition='$v["isshow"]'>显示<else />隐藏</if></span></td>
+        <?php if(is_array($list)): foreach($list as $key=>$v): ?><tr>
+            <td><input type="checkbox" name='ids[]' value='<?php echo ($v["id"]); ?>'></td>
+            <td><?php echo ($v["id"]); ?></td>
+            <td><?php echo ($v["title"]); if($v['status'] == 0): ?><font style='color:red;font-size:12px;margin-left:10px;'>新</font><?php endif; ?></td>
+            <td><?php echo ($v["name"]); ?></td>
+            <td><?php echo ($v["phone"]); ?></td>
+            <td align='center'><?php echo (mydate($v["inputtime"],'Y-m-d H:i')); ?></td>
+            <td align='center'><span class="show" style='color:red;cursor:pointer;'><?php if($v["isshow"]): ?>显示<?php else: ?>隐藏<?php endif; ?></span></td>
             <td align='center'>
-                <a href='{:U("read","id=".$v["id"])}' class='a-btn'>阅读</a>
-                <a href='javascript:;' onclick="del('{:U('delete','id='.$v['id'])}')" class='a-btn'>删除</a>
+                <a href='<?php echo U("read","id=".$v["id"]);?>' class='a-btn'>阅读</a>
+                <a href='javascript:;' onclick="del('<?php echo U('delete','id='.$v['id']);?>')" class='a-btn'>删除</a>
             </td>
-        </tr>
-        </foreach>
+        </tr><?php endforeach; endif; ?>
         <tr>
             <td colspan='8' align='left'>
                 <span class='btn-info checked'>反选</span>
-                <input type="button" class='btn-info' onclick="alldel('{:U('alldel','','')}')" value='删除'>
+                <input type="button" class='btn-info' onclick="alldel('<?php echo U('alldel','','');?>')" value='删除'>
             </td>
         </tr>
-        <tr><td colspan="8" class='page' align='right'>{$page}</td></tr>
+        <tr><td colspan="8" class='page' align='right'><?php echo ($page); ?></td></tr>
     </table>
     </form>
     <script type="text/javascript">
@@ -71,7 +84,7 @@
                 if('显示' == $(this).text()){
                     $.ajax({
                         type:'post',
-                        url:'{:U("isshow",'','')}',
+                        url:'<?php echo U("isshow",'','');?>',
                         data:"id="+id+"&isshow=0",
                         success:function(e){
                             var m = eval(e);
@@ -85,7 +98,7 @@
                 } else {
                     $.ajax({
                         type:'post',
-                        url:'{:U("isshow",'','')}',
+                        url:'<?php echo U("isshow",'','');?>',
                         data:"id="+id+"&isshow=1",
                         success:function(e){
                             var m = eval(e);
@@ -130,4 +143,7 @@
             }
         }
     </script>
-<include file='Public:footer' />
+    </div>
+</div>
+</body>
+</html>
